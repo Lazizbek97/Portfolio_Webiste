@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:web_project/core/utils/size_config.dart';
+import 'package:web_project/screens/widgets/skillsProgress_bar.dart';
 import 'package:web_project/screens/widgets/text_button.dart';
 
 class MaxDesctopUI extends StatelessWidget {
@@ -57,13 +58,6 @@ class MaxDesctopUI extends StatelessWidget {
                               height: getHeight(450),
                               width: getWidth(400),
                               margin: const EdgeInsets.symmetric(horizontal: 5),
-                              // decoration: BoxDecoration(
-                              //   image: DecorationImage(
-                              //     fit: BoxFit.cover,
-                              //     image: NetworkImage(
-                              //         "https://source.unsplash.com/random/$index"),
-                              //   ),
-                              // ),
                               child: Column(
                                 children: [
                                   SizedBox(
@@ -115,19 +109,24 @@ class AboutMePart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // height: getHeight(1180),
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.8,
       width: double.infinity,
-      child: Column(
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width < 1370 ? 50 : 150,
+        vertical: MediaQuery.of(context).size.height * 0.07,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            width: getWidth(875),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.4,
+            color: Colors.white,
             child: Column(
               children: [
-                Text(
+                const Text(
                   "About me",
-                  style: TextStyle(
-                      fontSize: getHeight(65), fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   "I'm Lazizbek Fayziev and i do web design, Graphic Design, User Experiences. habitant et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet.",
@@ -136,35 +135,101 @@ class AboutMePart extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 30),
+                  child: Divider(
+                    height: 20,
+                  ),
+                ),
+                const Text(
+                  "Education",
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Expanded(
+                      child: Text(
+                        'Tashkent State University of Oriental Studies',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Icon(
+                      Icons.business_outlined,
+                      size: 30,
+                      color: Color(0xff8DA2FE),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Expanded(
+                      child: Text(
+                        'Kyung Hee University',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Icon(
+                      Icons.business_outlined,
+                      size: 30,
+                      color: Color(0xff8DA2FE),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
-          Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getWidth(100), vertical: getHeight(50)),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height *0.6,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        height: getHeight(450),
-                        width: MediaQuery.of(context).size.width < 1370
-                            ? 200
-                            : getWidth(400),
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                                "https://source.unsplash.com/random/$index"),
-                          ),
-                        ),
-                      );
-                    }),
-              )),
+          Container(
+            child: Column(
+              children: [
+                const Text(
+                  "Tools Expertness",
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
+                ),
+                SkillsProgressBar(
+                  title: "Flutter",
+                  rightPadding: 20,
+                ),
+                SkillsProgressBar(
+                  title: "Dart",
+                  rightPadding: 20,
+                ),
+                SkillsProgressBar(
+                  title: "Python",
+                  rightPadding: 30,
+                ),
+                SkillsProgressBar(
+                  title: "Git",
+                  rightPadding: 40,
+                ),
+                const Text(
+                  "Languages",
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
+                ),
+                SkillsProgressBar(
+                  title: "English",
+                  rightPadding: 10,
+                ),
+                SkillsProgressBar(
+                  title: "Korean",
+                  rightPadding: 20,
+                ),
+                SkillsProgressBar(
+                  title: "Russian",
+                  rightPadding: 60,
+                ),
+                SkillsProgressBar(
+                  title: "Uzbek",
+                  rightPadding: 0,
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

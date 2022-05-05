@@ -49,6 +49,6 @@ class MainTheme {
 
     // ? Scaffold background Color
 
-    scaffoldBackgroundColor: const Color(0xfffff5f5),
+    scaffoldBackgroundColor: const Color(0xffF9F9FF),
   );
 }

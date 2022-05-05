@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:web_project/core/utils/main_theme.dart';
 import 'package:web_project/screens/ui_screens/max_desctop.dart';
+import 'package:web_project/screens/ui_screens/mobile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,17 +33,9 @@ class Shell extends StatelessWidget {
           return const MaxDesctopUI();
         } else if (constraints.maxWidth <= 1060 &&
             constraints.maxWidth >= 800) {
-          return Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.amber,
-          );
+          return const MaxDesctopUI();
         } else {
-          return Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.blueAccent,
-          );
+          return const MobileUi();
         }
       },
     );

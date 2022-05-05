@@ -16,7 +16,7 @@ class SkillsProgressBar extends StatelessWidget {
         Text(title, style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),),
         Container(
           height: 20,
-          width: MediaQuery.of(context).size.width * 0.4,
+          width:   MediaQuery.of(context).size.width<800?MediaQuery.of(context).size.width * 0.75:  MediaQuery.of(context).size.width * 0.4,
           padding: EdgeInsets.only(right: rightPadding),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.shade300),

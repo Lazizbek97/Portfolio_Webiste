@@ -1,8 +1,12 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:web_project/core/utils/size_config.dart';
-import 'package:web_project/screens/widgets/skillsProgress_bar.dart';
+import 'package:web_project/screens/widgets/aboutme_education.dart';
+import 'package:web_project/screens/widgets/expertise_language.dart';
+import 'package:web_project/screens/widgets/init_intro.dart';
+import 'package:web_project/screens/widgets/my_profile_picture.dart';
 import 'package:web_project/screens/widgets/text_button.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MaxDesctopUI extends StatelessWidget {
   const MaxDesctopUI({
@@ -18,85 +22,267 @@ class MaxDesctopUI extends StatelessWidget {
         height: double.infinity,
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              const FirstUiPage(),
-              const AboutMePart(),
-              SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: getWidth(875),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Services.",
-                            style: TextStyle(
-                                fontSize: getHeight(65),
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            "Our team members are experts in all facets of the design industry including: print design, illustration, branding, identity and more.",
-                            style: TextStyle(
-                              fontSize: getHeight(20),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getWidth(100), vertical: getHeight(50)),
-                      child: SizedBox(
-                        height: getHeight(500),
-                        width: double.infinity,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: getHeight(450),
-                              width: getWidth(400),
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.width < 1370
-                                            ? 130
-                                            : 200,
-                                    width: double.infinity,
-                                    child: Image.network(
-                                      'https://source.unsplash.com/random/$index',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  const Text(
-                                    "WEB Design",
-                                    style: TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Why money's in that office,right If she start giving me some bullshit about it ain'tthere someplace or anywhere.",
-                                      style: TextStyle(fontSize: 24),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            children:  [
+              FirstUiPage(),
+              AboutMePart(),
+              ServicesPart(),
+              StacksAndSevices(),
+              ContactPart(
+                width: 0.4,
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ContactPart extends StatelessWidget {
+   ContactPart({
+    Key? key,
+    required this.width
+  }) : super(key: key);
+
+  double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.6,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text(
+            "Contact.",
+            style: TextStyle(
+              fontSize: 65,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const Text(
+            "Follow me on Social Medias or Connect for any Project inqueries",
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width *width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(
+                    FontAwesomeIcons.google,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(
+                    FontAwesomeIcons.facebook,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(
+                    FontAwesomeIcons.telegram,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(
+                    FontAwesomeIcons.medium,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Text(
+            "Copyright ©2022 All rights reserved | This template is made with  by Lazizbek",
+            style: TextStyle(
+              fontSize: 17,
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class StacksAndSevices extends StatelessWidget {
+  const StacksAndSevices({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width < 1370 ? 50 : 150,
+        vertical: MediaQuery.of(context).size.height * 0.07,
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            width: 875,
+            child: SkillsTexts(size: 65),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: const SkillsBoxes(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SkillsBoxes extends StatelessWidget {
+  const SkillsBoxes({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 500,
+        mainAxisExtent: 300,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
+      itemBuilder: (context, index) {
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          color: Colors.amber,
+        );
+      },
+      itemCount: 6,
+    );
+  }
+}
+
+class SkillsTexts extends StatelessWidget {
+  SkillsTexts({Key? key, required this.size}) : super(key: key);
+
+  double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Stacks & Services",
+          style: TextStyle(fontSize: size, fontWeight: FontWeight.w600),
+        ),
+        const Text(
+          "What i'am expert in and would offer you",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+}
+
+class ServicesPart extends StatelessWidget {
+  const ServicesPart({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          SizedBox(
+            width: getWidth(875),
+            child: PortfolioTexts(textSize: 65),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getWidth(100), vertical: getHeight(50)),
+            child: PortfolioBoxes(height: 0.8),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PortfolioTexts extends StatelessWidget {
+  PortfolioTexts({Key? key, required this.textSize}) : super(key: key);
+  double textSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Portfolios",
+          style: TextStyle(fontSize: textSize, fontWeight: FontWeight.w600),
+        ),
+        const Text(
+          "Our team members are experts in all facets of the design industry including: print design, illustration, branding, identity and more.",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+}
+
+class PortfolioBoxes extends StatelessWidget {
+  PortfolioBoxes({Key? key, required this.height}) : super(key: key);
+
+  double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * height,
+      width: double.infinity,
+      child: GridView.custom(
+        gridDelegate: SliverQuiltedGridDelegate(
+          crossAxisCount: 4,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
+          repeatPattern: QuiltedGridRepeatPattern.inverted,
+          pattern: [
+            const QuiltedGridTile(2, 2),
+            const QuiltedGridTile(1, 1),
+            const QuiltedGridTile(1, 1),
+            const QuiltedGridTile(1, 2),
+          ],
+        ),
+        childrenDelegate: SliverChildBuilderDelegate(
+            (context, index) => Container(
+                  child: Text(index.toString()),
+                  color: Colors.amber,
+                ),
+            childCount: 10),
       ),
     );
   }
@@ -117,119 +303,10 @@ class AboutMePart extends StatelessWidget {
         vertical: MediaQuery.of(context).size.height * 0.07,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.4,
-            color: Colors.white,
-            child: Column(
-              children: [
-                const Text(
-                  "About me",
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  "I'm Lazizbek Fayziev and i do web design, Graphic Design, User Experiences. habitant et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet.",
-                  style: TextStyle(
-                    fontSize: getHeight(20),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30),
-                  child: Divider(
-                    height: 20,
-                  ),
-                ),
-                const Text(
-                  "Education",
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        'Tashkent State University of Oriental Studies',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Icon(
-                      Icons.business_outlined,
-                      size: 30,
-                      color: Color(0xff8DA2FE),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        'Kyung Hee University',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Icon(
-                      Icons.business_outlined,
-                      size: 30,
-                      color: Color(0xff8DA2FE),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                const Text(
-                  "Tools Expertness",
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
-                ),
-                SkillsProgressBar(
-                  title: "Flutter",
-                  rightPadding: 20,
-                ),
-                SkillsProgressBar(
-                  title: "Dart",
-                  rightPadding: 20,
-                ),
-                SkillsProgressBar(
-                  title: "Python",
-                  rightPadding: 30,
-                ),
-                SkillsProgressBar(
-                  title: "Git",
-                  rightPadding: 40,
-                ),
-                const Text(
-                  "Languages",
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.w600),
-                ),
-                SkillsProgressBar(
-                  title: "English",
-                  rightPadding: 10,
-                ),
-                SkillsProgressBar(
-                  title: "Korean",
-                  rightPadding: 20,
-                ),
-                SkillsProgressBar(
-                  title: "Russian",
-                  rightPadding: 60,
-                ),
-                SkillsProgressBar(
-                  title: "Uzbek",
-                  rightPadding: 0,
-                ),
-              ],
-            ),
-          )
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          AboutMeEducation(),
+          LanguageExpertise(),
         ],
       ),
     );
@@ -282,61 +359,43 @@ class FirstUiPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width < 1370 ? 50 : 150,
                 vertical: getWidth(60)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Main description content
-
-                SizedBox(
-                  // height: getHeight(557),
-                  width: MediaQuery.of(context).size.width < 1370 ? 400 : 556,
-                  child: Column(
+            child: MediaQuery.of(context).size.width < 1045
+                ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      AutoSizeText(
-                        "Hello Flutter Folks! I'm ",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                    children: [
+                      // My image
+
+                      MyProfilePicture(
+                        height: 600,
+                        width: 500,
                       ),
-                      AutoSizeText(
-                        "I'm Lazizbek Fayziev",
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xffFD5956),
-                        ),
+                      const SizedBox(
+                        height: 30,
                       ),
-                      AutoSizeText(
-                        "Flutter Developer",
-                        style: TextStyle(
-                          fontSize: 90,
-                          fontWeight: FontWeight.bold,
-                        ),
+
+                      Initail_Intro_me(
+                        width: double.infinity,
+                        size: 90,
                       ),
-                      AutoSizeText(
-                        "Since creative designers often interact with creative teams, managers and clients, they need strong communication skills.",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                        textAlign: TextAlign.justify,
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Main description content
+
+                      Initail_Intro_me(
+                        width: 400,
+                        size: 90,
+                      ),
+                      // My image
+
+                      MyProfilePicture(
+                        height: 600,
+                        width: 400,
                       ),
                     ],
                   ),
-                ),
-                // My image
-
-                Container(
-                  height: MediaQuery.of(context).size.width < 1370 ? 600 : 882,
-                  width: MediaQuery.of(context).size.width < 1420 ? 400 : 552,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage("https://source.unsplash.com/random"),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

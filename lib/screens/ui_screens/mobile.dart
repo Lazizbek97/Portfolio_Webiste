@@ -4,6 +4,10 @@ import 'package:web_project/screens/widgets/aboutme_education.dart';
 import 'package:web_project/screens/widgets/expertise_language.dart';
 import 'package:web_project/screens/widgets/init_intro.dart';
 import 'package:web_project/screens/widgets/my_profile_picture.dart';
+import 'package:web_project/screens/widgets/portfolio_boxes.dart';
+import 'package:web_project/screens/widgets/portfolio_texts.dart';
+import 'package:web_project/screens/widgets/skills_boxes.dart';
+import 'package:web_project/screens/widgets/skills_texts.dart';
 import 'package:web_project/screens/widgets/text_button.dart';
 
 class MobileUi extends StatelessWidget {
@@ -70,9 +74,11 @@ class MobileUi extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: double.infinity,
-                  child: const SkillsBoxes(),
+                  child: SkillsBoxes(),
                 ),
-                 ContactPart(width: 0.6,)
+                ContactPart(
+                  width: 0.6,
+                )
               ],
             ),
           ),
@@ -128,6 +134,9 @@ class MyIntro extends StatelessWidget {
         Initail_Intro_me(
           width: double.infinity,
           size: 50,
+        ),
+        const SizedBox(
+          height: 30,
         ),
       ],
     );

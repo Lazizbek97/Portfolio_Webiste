@@ -11,7 +11,7 @@ class LanguageExpertise extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width < 800
           ? MediaQuery.of(context).size.width * 0.75
-          : MediaQuery.of(context).size.width * 0.35,
+          : MediaQuery.of(context).size.width * 0.4,
       child: Column(
         children: [
           const Text(

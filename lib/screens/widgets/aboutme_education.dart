@@ -8,7 +8,9 @@ class AboutMeEducation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width:  MediaQuery.of(context).size.width<800?MediaQuery.of(context).size.width * 0.75:  MediaQuery.of(context).size.width * 0.35,
+      width: MediaQuery.of(context).size.width < 800
+          ? MediaQuery.of(context).size.width * 0.75
+          : MediaQuery.of(context).size.width * 0.4,
       child: Column(
         children: [
           const Text(
@@ -16,7 +18,7 @@ class AboutMeEducation extends StatelessWidget {
             style: TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
           ),
           const Text(
-            "I'm Lazizbek Fayziev and i do web design, Graphic Design, User Experiences. habitant et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet.",
+            "I'm a full-stack Flutter developer with Firebase backend. My Stacks are C, Python, Dart, Flutter, Firebase, SQL, SQLite, Hive, Flask etc. Furthermore, I can speak in 4 languages fluently, Uzbek, English, Korean and Russian. I've lived and studied in Korea for about 1.5 years with more than 15 different nationalities. I believe, this experience helped me to boost my communication skills with foreigners. Additionally, I've more than 1.5 years of experience to teach languages(Korean, English) in Study Centers. In short, I'm ready for any kind of challenges and available to work remotely or in offices without any difficulties.",
             style: TextStyle(
               fontSize: 20,
             ),

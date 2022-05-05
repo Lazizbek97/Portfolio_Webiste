@@ -9,7 +9,7 @@ class TextButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onTap,
-      child:  Text(text),
+      child:  Text(text, style: TextStyle(fontSize: 20),),
     );
   }
 }

@@ -39,7 +39,7 @@ class Initail_Intro_me extends StatelessWidget {
             ),
           ),
           const AutoSizeText(
-            "Since creative designers often interact with creative teams, managers and clients, they need strong communication skills.",
+            "I'll build fully custom application for both Android and IOS platforms with Cross platform freamwork Flutter.",
             style: TextStyle(
               fontSize: 20,
             ),

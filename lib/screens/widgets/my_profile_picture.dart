@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyProfilePicture extends StatelessWidget {
-   MyProfilePicture({
+  MyProfilePicture({
     Key? key,
-  required this.width,
-  required this.height,
+    required this.width,
+    required this.height,
   }) : super(key: key);
 
   double width;
@@ -18,7 +18,7 @@ class MyProfilePicture extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage("https://source.unsplash.com/random"),
+          image: AssetImage("assets/images/avatar.jpg"),
         ),
       ),
     );

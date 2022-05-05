@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:web_project/core/utils/size_config.dart';
@@ -5,8 +6,12 @@ import 'package:web_project/screens/widgets/aboutme_education.dart';
 import 'package:web_project/screens/widgets/expertise_language.dart';
 import 'package:web_project/screens/widgets/init_intro.dart';
 import 'package:web_project/screens/widgets/my_profile_picture.dart';
+import 'package:web_project/screens/widgets/portfolio_boxes.dart';
+import 'package:web_project/screens/widgets/portfolio_texts.dart';
+import 'package:web_project/screens/widgets/skills_boxes.dart';
+import 'package:web_project/screens/widgets/skills_texts.dart';
 import 'package:web_project/screens/widgets/text_button.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MaxDesctopUI extends StatelessWidget {
   const MaxDesctopUI({
@@ -22,11 +27,11 @@ class MaxDesctopUI extends StatelessWidget {
         height: double.infinity,
         child: SingleChildScrollView(
           child: Column(
-            children:  [
-              FirstUiPage(),
-              AboutMePart(),
-              ServicesPart(),
-              StacksAndSevices(),
+            children: [
+              const FirstUiPage(),
+              const AboutMePart(),
+              const ServicesPart(),
+              const StacksAndSevices(),
               ContactPart(
                 width: 0.4,
               )
@@ -39,17 +44,20 @@ class MaxDesctopUI extends StatelessWidget {
 }
 
 class ContactPart extends StatelessWidget {
-   ContactPart({
-    Key? key,
-    required this.width
-  }) : super(key: key);
+  ContactPart({Key? key, required this.width}) : super(key: key);
 
   double width;
+
+  void _launchUrl(String url) async {
+    final Uri _url = Uri.parse(url);
+
+    if (!await launchUrl(_url)) throw 'Could not launch $url';
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.4,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -67,40 +75,52 @@ class ContactPart extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width *width,
+            width: MediaQuery.of(context).size.width * width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl(
+                        "mailto:laziz.fayziev@mail.cu?subject=newMessage&body=messageBody");
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.google,
                     size: 30,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl("https://www.facebook.com/lazizbek.fayziyev.7");
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.facebook,
                     size: 30,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl("https://t.me/lazizbek_blog");
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.telegram,
                     size: 30,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl(
+                        "https://www.linkedin.com/in/lazizbek-fayziev-977600177");
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.linkedin,
                     size: 30,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchUrl("https://medium.com/@lazizbekfayziyev");
+                  },
                   icon: const FaIcon(
                     FontAwesomeIcons.medium,
                     size: 30,
@@ -141,65 +161,15 @@ class StacksAndSevices extends StatelessWidget {
             child: SkillsTexts(size: 65),
           ),
           const SizedBox(
-            height: 20,
+            height: 40,
           ),
           SizedBox(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.8,
-            child: const SkillsBoxes(),
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: SkillsBoxes(),
           ),
         ],
       ),
-    );
-  }
-}
-
-class SkillsBoxes extends StatelessWidget {
-  const SkillsBoxes({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 500,
-        mainAxisExtent: 300,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      itemBuilder: (context, index) {
-        return Container(
-          padding: const EdgeInsets.all(10.0),
-          color: Colors.amber,
-        );
-      },
-      itemCount: 6,
-    );
-  }
-}
-
-class SkillsTexts extends StatelessWidget {
-  SkillsTexts({Key? key, required this.size}) : super(key: key);
-
-  double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Stacks & Services",
-          style: TextStyle(fontSize: size, fontWeight: FontWeight.w600),
-        ),
-        const Text(
-          "What i'am expert in and would offer you",
-          style: TextStyle(
-            fontSize: 20,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
     );
   }
 }
@@ -214,6 +184,7 @@ class ServicesPart extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(
             width: getWidth(875),
@@ -222,67 +193,9 @@ class ServicesPart extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: getWidth(100), vertical: getHeight(50)),
-            child: PortfolioBoxes(height: 0.8),
+            child: PortfolioBoxes(height: 0.6),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class PortfolioTexts extends StatelessWidget {
-  PortfolioTexts({Key? key, required this.textSize}) : super(key: key);
-  double textSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Portfolios",
-          style: TextStyle(fontSize: textSize, fontWeight: FontWeight.w600),
-        ),
-        const Text(
-          "Our team members are experts in all facets of the design industry including: print design, illustration, branding, identity and more.",
-          style: TextStyle(
-            fontSize: 20,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-}
-
-class PortfolioBoxes extends StatelessWidget {
-  PortfolioBoxes({Key? key, required this.height}) : super(key: key);
-
-  double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * height,
-      width: double.infinity,
-      child: GridView.custom(
-        gridDelegate: SliverQuiltedGridDelegate(
-          crossAxisCount: 4,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          repeatPattern: QuiltedGridRepeatPattern.inverted,
-          pattern: [
-            const QuiltedGridTile(2, 2),
-            const QuiltedGridTile(1, 1),
-            const QuiltedGridTile(1, 1),
-            const QuiltedGridTile(1, 2),
-          ],
-        ),
-        childrenDelegate: SliverChildBuilderDelegate(
-            (context, index) => Container(
-                  child: Text(index.toString()),
-                  color: Colors.amber,
-                ),
-            childCount: 10),
       ),
     );
   }
@@ -296,7 +209,7 @@ class AboutMePart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.7,
       width: double.infinity,
       margin: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width < 1370 ? 50 : 150,
@@ -317,6 +230,12 @@ class FirstUiPage extends StatelessWidget {
   const FirstUiPage({
     Key? key,
   }) : super(key: key);
+
+  void _launchUrl(String url) async {
+    final Uri _url = Uri.parse(url);
+
+    if (!await launchUrl(_url)) throw 'Could not launch $url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -339,19 +258,24 @@ class FirstUiPage extends StatelessWidget {
                 TextButtonWidget(onTap: () {}, text: "Portfolio"),
                 TextButtonWidget(onTap: () {}, text: "Contact"),
                 const Spacer(),
-                SizedBox(
-                  height: getHeight(52),
-                  width: getWidth(180),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Portfolio Here".toUpperCase(),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                    ),
-                  ),
-                )
+                MediaQuery.of(context).size.width > 830
+                    ? SizedBox(
+                        height: 52,
+                        width:
+                            MediaQuery.of(context).size.width < 910 ? 100 : 180,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _launchUrl("https://github.com/Lazizbek97");
+                          },
+                          child: AutoSizeText(
+                            "Portfolio Here".toUpperCase(),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.black,
+                          ),
+                        ),
+                      )
+                    : const SizedBox()
               ],
             ),
           ),
